@@ -9,10 +9,10 @@ public class PlayerGrabber : MonoBehaviour
     public bool canHold = true;
     public GameObject grabbable;
     public Transform guide;
-
+    public GhostModeController player;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !player.ghostMode)
         {
             if (!canHold)
                 throw_drop();

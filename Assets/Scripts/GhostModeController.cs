@@ -27,11 +27,13 @@ public class GhostModeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canReturn = Physics.Raycast(guide.transform.position, guide.transform.forward, 100000f, ~mask);
+        RaycastHit hit;
+        canReturn = Physics.Raycast(guide.transform.position, guide.transform.forward,out hit, 100000f, ~mask);
+        if (hit.collider == null || hit.collider.tag != "Body") canReturn = false;
         if (Input.GetKeyDown(KeyCode.E))
         {    
             if(!ghostMode) playerGhostSwitch();
-            else if(ghostMode && (Vector3.Distance(transform.position,DollModel.transform.position) < 2f || canReturn)) playerGhostSwitch();
+            else if(ghostMode && (Vector3.Distance(transform.position,DollModel.transform.position) < 1f || canReturn)) playerGhostSwitch();
         }
     }
     public bool playerGhostSwitch()
