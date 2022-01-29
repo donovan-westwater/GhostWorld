@@ -29,8 +29,13 @@ public class PlayerGrabber : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Grabbable")
-            if (!grabbable) // if we don't have anything holding
-                grabbable = col.gameObject;
+        {
+            if (!grabbable)
+            { // if we don't have anything holding
+               if(Physics.Raycast(guide.position,guide.transform.position - guide.transform.parent.position,20f)) grabbable = col.gameObject;
+
+            }
+        }
     }
 
     //We can use trigger or Collision
