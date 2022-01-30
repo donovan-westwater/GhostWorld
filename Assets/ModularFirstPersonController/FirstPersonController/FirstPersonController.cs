@@ -17,7 +17,8 @@ using UnityEngine.UI;
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-
+    private string walkingSoundPath = "event:/DollWalk";
+    private FMOD.Studio.EventInstance instance;
     #region Camera Movement Variables
 
     public Camera playerCamera;
@@ -165,6 +166,9 @@ public class FirstPersonController : MonoBehaviour
         {
             crosshairObject.gameObject.SetActive(false);
         }
+
+        instance = FMODUnity.RuntimeManager.CreateInstance(walkingSoundPath);
+        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
 
         #region Sprint Bar
 
@@ -367,7 +371,7 @@ public class FirstPersonController : MonoBehaviour
     void FixedUpdate()
     {
         #region Movement
-
+        
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
@@ -377,11 +381,22 @@ public class FirstPersonController : MonoBehaviour
             // Will allow head bob
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
+                instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+                if (!isWalking)
+                {
+                    
+                    instance.start();
+                }
                 isWalking = true;
+                
+                
+
             }
             else
             {
                 isWalking = false;
+                instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                //instance.release();
             }
 
             // All movement calculations shile sprint is active

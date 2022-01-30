@@ -15,6 +15,11 @@ public class GhostModeController : MonoBehaviour
     GameObject DollModel;
     [SerializeField]
     GameObject guide;
+    [SerializeField]
+    private string GhostExitPath;
+    [SerializeField]
+    private string GhostEnterPath;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +45,16 @@ public class GhostModeController : MonoBehaviour
     {
         ghostMode = !ghostMode;
         if (DollModel) DollModel.SetActive(ghostMode);
-        if(ghostMode) DollModel.transform.position = this.transform.position;
-        else this.transform.position = DollModel.transform.position;
+        if (ghostMode)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(GhostExitPath, this.transform.position);
+            DollModel.transform.position = this.transform.position;
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(GhostEnterPath, this.transform.position);
+            this.transform.position = DollModel.transform.position;
+        }
         justSpawned = ghostMode;
         Physics.IgnoreLayerCollision(this.transform.gameObject.layer, 7, !ghostMode);
         Physics.IgnoreLayerCollision(this.transform.gameObject.layer, 6, ghostMode);

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1596880250568479796}
   - component: {fileID: 1596880250568479795}
-  - component: {fileID: 1596880250568479794}
   - component: {fileID: 3156422263313243716}
+  - component: {fileID: 6448536121269338839}
   - component: {fileID: 3156422263313243715}
   m_Layer: 0
   m_Name: PlayerCamera
@@ -79,14 +79,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1596880250568479794
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596880250568479793}
-  m_Enabled: 1
 --- !u!65 &3156422263313243716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100,6 +92,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6448536121269338839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596880250568479793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 114443f0ade992d4dba4c50c22fe79b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3156422263664241699}
+  awesomeShader: {fileID: 4800000, guid: fb4f4188a5d1b914a93b5945db84bb74, type: 3}
+  camText: {fileID: 8400000, guid: 8c5b1953cefdcb14baa2014f17b03cc9, type: 2}
+  ghostVision: 0
 --- !u!114 &3156422263313243715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +124,7 @@ MonoBehaviour:
   canHold: 1
   grabbable: {fileID: 0}
   guide: {fileID: 3156422263934676005}
+  player: {fileID: 3156422263664241699}
 --- !u!1 &1596880250613393455
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +626,7 @@ MonoBehaviour:
   ghostMode: 0
   justSpawned: 0
   DollModel: {fileID: 0}
+  guide: {fileID: 0}
 --- !u!1 &1596880251554009240
 GameObject:
   m_ObjectHideFlags: 0

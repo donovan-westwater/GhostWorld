@@ -12,7 +12,7 @@ public class PlayerGrabber : MonoBehaviour
     public GhostModeController player;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !player.ghostMode)
+        if (Input.GetMouseButtonDown(0))
         {
             if (!canHold)
                 throw_drop();
@@ -78,7 +78,7 @@ public class PlayerGrabber : MonoBehaviour
         // we don't have anything to do with our ball field anymore
         grabbable = null;
         //Apply velocity on throwing
-        guide.GetChild(0).gameObject.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        //guide.GetChild(0).gameObject.GetComponent<Rigidbody>().velocity = transform.forward * speed;
 
         //Unparent our ball
         guide.GetChild(0).parent = null;
