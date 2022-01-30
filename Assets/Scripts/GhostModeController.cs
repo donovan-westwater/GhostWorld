@@ -23,7 +23,7 @@ public class GhostModeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mask = LayerMask.GetMask("Physical");
+        mask = LayerMask.GetMask("Physical") | LayerMask.GetMask("Window");
         Physics.IgnoreLayerCollision(this.transform.gameObject.layer, 7,true);
         Physics.IgnoreLayerCollision(this.transform.gameObject.layer, 3, true);
         DollModel.SetActive(false);
