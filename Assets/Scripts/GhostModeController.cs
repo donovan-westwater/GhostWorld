@@ -52,8 +52,8 @@ public class GhostModeController : MonoBehaviour
         }
         else
         {
-            FMODUnity.RuntimeManager.PlayOneShot(GhostEnterPath, this.transform.position);
             this.transform.position = DollModel.transform.position;
+            FMODUnity.RuntimeManager.PlayOneShot(GhostEnterPath, this.transform.position);
         }
         justSpawned = ghostMode;
         Physics.IgnoreLayerCollision(this.transform.gameObject.layer, 7, !ghostMode);
